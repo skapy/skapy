@@ -1,9 +1,17 @@
 pipeline {
-  agent any
+  agent none
   stages {
     stage('Message') {
       steps {
         echo 'test'
+      }
+    }
+    stage('') {
+      steps {
+        node(label: 'linux') {
+          sleep 2
+        }
+
       }
     }
   }
