@@ -6,13 +6,31 @@ pipeline {
         echo 'test'
       }
     }
-    stage('error') {
-      steps {
-        node(label: 'linux') {
-          sleep 2
-          sh 'date'
-        }
+    stage('github check in') {
+      parallel {
+        stage('github check in') {
+          steps {
+            node(label: 'linux') {
+              sleep 2
+              sh 'date'
+            }
 
+          }
+        }
+        stage('') {
+          steps {
+            node(label: 'linux') {
+              sleep 5
+              sh 'date'
+            }
+
+          }
+        }
+      }
+    }
+    stage('Finish Message') {
+      steps {
+        echo 'Finish'
       }
     }
   }
