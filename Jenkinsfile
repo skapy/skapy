@@ -1,21 +1,9 @@
 pipeline {
-  agent none
+  agent any
   stages {
     stage('Message') {
-      parallel {
-        stage('Message') {
-          steps {
-            echo 'test'
-          }
-        }
-        stage('git check in') {
-          steps {
-            timestamps()
-            sh '''date
-ls
-pwd'''
-          }
-        }
+      steps {
+        echo 'test'
       }
     }
   }
