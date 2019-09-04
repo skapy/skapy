@@ -33,12 +33,21 @@ pipeline {
         echo 'Finish'
       }
     }
-    stage('') {
-      steps {
-        node(label: 'windows') {
-          bat(script: 'cd', returnStatus: true)
-        }
+    stage('error') {
+      parallel {
+        stage('error') {
+          steps {
+            node(label: 'windows') {
+              bat(script: 'cd', returnStatus: true)
+            }
 
+          }
+        }
+        stage('mail') {
+          steps {
+            mail(subject: 'Test job finished', body: 'Check pipeline job', to: 'dariusz_schmidt@hotmail.com')
+          }
+        }
       }
     }
   }
