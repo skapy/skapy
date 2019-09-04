@@ -17,7 +17,7 @@ pipeline {
 
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             node(label: 'linux') {
               sleep 5
@@ -31,6 +31,14 @@ pipeline {
     stage('Finish Message') {
       steps {
         echo 'Finish'
+      }
+    }
+    stage('') {
+      steps {
+        node(label: 'windows') {
+          bat(script: 'cd', returnStatus: true)
+        }
+
       }
     }
   }
