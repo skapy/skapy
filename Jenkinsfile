@@ -33,21 +33,10 @@ pipeline {
         echo 'Finish'
       }
     }
-    stage('error') {
-      parallel {
-        stage('error') {
-          steps {
-            node(label: 'windows') {
-              bat(script: 'cd', returnStatus: true)
-            }
-
-          }
-        }
-        stage('mail') {
-          steps {
-            mail(subject: 'Test job finished', body: 'Check pipeline job', to: 'dariusz_schmidt@hotmail.com')
-          }
-        }
+    stage('mail') {
+      steps {
+        mail(subject: 'Test job finished', body: 'Check pipeline job', to: 'dariusz.schmidt@davita.com', from: 'no-reply@davita.com')
+        withAnt(installation: 'test_inst', jdk: '8')
       }
     }
   }
